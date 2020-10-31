@@ -3,6 +3,8 @@
   <%= f.text_field :title %>
   <%= f.label :content %>
   <%= f.text_field :content %>
+ <%= f.label :画像 %><br />
+ <%= f.file_field :img, class: "image" %>
 
 
   <%= f.submit "投稿", class: "btn btn-primary" %>

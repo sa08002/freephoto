@@ -1,12 +1,14 @@
 class PostsController < ApplicationController
 
+  before_action :authenticate_user!
+
   def new
     @post = Post.new
   end
 
   def create
     @post = Post.new(post_params)
-    if @post.present?
+    if @post.image.present?
       @post.save
       redirect_to root_path
       flash[:notice] = "投稿が保存されました"
@@ -16,6 +18,7 @@ class PostsController < ApplicationController
     end
   end
 
+
   private
     def post_params
       params.require(:post).permit(:title, :content, :image).merge(user_id: current_user.id)
@@ -23,4 +26,3 @@ class PostsController < ApplicationController
 
 
 end
-
